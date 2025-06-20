@@ -7,7 +7,7 @@ public class DjikstraAlgorithm {
     public static void main(String[] args) {
         int n = 6;
         int src = 0;
-        ArrayList<ArrayList<int[]>> adj = new ArrayList<>(n);
+        ArrayList<ArrayList<int[]>> adj = new ArrayList<>(n);  //Adjancency List
 
         for (int i = 0; i < n; i++) {
             adj.add(new ArrayList<>());
@@ -37,26 +37,28 @@ public class DjikstraAlgorithm {
         adj.get(5).add(new int[]{3, 4});
 
 
-        PriorityQueue<Pair> pq = new PriorityQueue<>((x,y) -> x.distance - y.distance);
-        int [] dist = new int[n];
+        PriorityQueue<Pair> pq = new PriorityQueue<>((x,y) -> x.distance - y.distance); //MinHeap
+        int [] dist = new int[n]; //distance array
         for(int i =0; i< n;i++){
-            dist[i] = (int) 1e9;
+            dist[i] = (int) 1e9; //1e9 or Integer.MAX_VALUE
         }
 
         dist[src] = 0;
-        pq.offer(new Pair(0,src));
+        pq.offer(new Pair(0,src)); //offer or add are same things it's just offer doesn't return an exception
 
         while(!pq.isEmpty()){
             int dis = pq.peek().distance;
             int node = pq.peek().node;
             pq.remove();
             for(int i = 0;i<adj.get(node).size();i++){
+            
                 int adjNode = adj.get(node).get(i)[1];
                 int edgeWeight = adj.get(node).get(i)[0];
 
                 if(dis + edgeWeight < dist[adjNode] ){
+                    //if our current distance is smaller than previously recorded distane, then only update the distane and push it into the queue.
                     dist[adjNode] = dis + edgeWeight;
-                    pq.add(new Pair(dist[adjNode],adjNode));
+                    pq.add(new Pair(dist[adjNode],adjNode)); //add can also be used
                 }
             }
         }
@@ -72,7 +74,10 @@ public class DjikstraAlgorithm {
             }
             System.out.println();
         }
+
+        
         System.out.println();
+        //print the distance array
         for(int i = 0;i<n;i++){
             System.out.print(dist[i] + " ");
         }
@@ -80,6 +85,8 @@ public class DjikstraAlgorithm {
 }
 
 class Pair {
+
+    //Pair in java using classes and constructor
     int distance;
     int node;
     public Pair(int distance, int node){
