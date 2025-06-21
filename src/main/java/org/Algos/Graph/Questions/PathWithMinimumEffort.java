@@ -1,6 +1,5 @@
-package org.Algos;
+package org.Algos.Graph.Questions;
 
-import java.sql.SQLOutput;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 

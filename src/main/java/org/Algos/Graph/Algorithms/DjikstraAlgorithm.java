@@ -1,4 +1,4 @@
-package org.Algos;
+package org.Algos.Graph.Algorithms;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
